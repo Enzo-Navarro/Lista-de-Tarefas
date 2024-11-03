@@ -88,7 +88,14 @@ document.querySelector('.todo__searchInput').addEventListener('keyup', (event) =
 });
 
 // Adiciona a tarefa ao clicar no ícone "+"
-document.querySelector('.todo__searchIcon').addEventListener('click', setTaskOnScreen);
+document.querySelector('.todo__searchIcon').addEventListener('click', () => setTaskOnScreen());
+
+// Para garantir que o botão "+" funcione no mobile
+const mobilePlusButton = document.querySelector('.todo__searchIcon');
+mobilePlusButton.addEventListener('touchend', (event) => {
+    event.preventDefault(); // Evita o comportamento padrão de toques
+    setTaskOnScreen(); // Chama a função para adicionar a tarefa
+});
 
 // Carrega as tarefas ao iniciar a página
 window.onload = loadTasksOnPageLoad;
